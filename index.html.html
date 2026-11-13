@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CampusRide – Campus Shuttle Tracker</title><link rel="stylesheet" href="style.css"></head><body>
+<header><div class="logo">🚌 Campus<b>Ride</b></div><nav id="nav"><button data-v="home" class="on">Home</button><button data-v="track">Track Bus</button><button data-v="ir">Seat Counter</button><button data-v="admin">Admin</button></nav></header>
+<main>
+<section id="home" class="view show"><div class="hero"><div class="ht"><span class="pill">Smart Campus Transport</span><h1>Never miss your<br><b>campus bus</b> again</h1>
+<p>See where your shuttle is, when it arrives, and whether there’s a seat — before you leave your hostel or class.</p>
+<button class="btn" onclick="go('track')">Find my bus →</button> <button class="btn ghost" onclick="go('ir')">See how seats are counted</button></div>
+<div class="bus3"><svg viewBox="0 0 440 230" id="busimg"><ellipse cx="220" cy="205" rx="200" ry="10" fill="#0006"/>
+<g class="bob"><rect x="30" y="50" width="380" height="135" rx="28" fill="#14b8a6"/><rect x="30" y="140" width="380" height="22" fill="#0e8f82"/>
+<rect x="50" y="68" width="62" height="50" rx="8" fill="#e6fff3"/><rect x="122" y="68" width="62" height="50" rx="8" fill="#e6fff3"/><rect x="194" y="68" width="62" height="50" rx="8" fill="#e6fff3"/>
+<rect x="266" y="62" width="46" height="108" rx="6" fill="#0b1d3a"/><rect x="272" y="68" width="16" height="96" fill="#cdeff0"/><rect x="290" y="68" width="16" height="96" fill="#cdeff0"/>
+<path d="M326 62h60a24 24 0 0 1 24 24v32H326z" fill="#e6fff3"/><text x="64" y="152" fill="#0b1d3a" font-size="16" font-weight="700">CAMPUS RIDE</text>
+<rect x="398" y="140" width="14" height="14" rx="4" fill="#fde68a"/><rect x="40" y="168" width="360" height="6" fill="#0b1d3a" opacity=".4"/>
+<g class="whl"><circle cx="105" cy="185" r="26" fill="#0b1d3a"/><circle cx="105" cy="185" r="12" fill="#b8f5c8"/><path d="M105 173v24M93 185h24" stroke="#0b1d3a" stroke-width="3"/></g>
+<g class="whl"><circle cx="335" cy="185" r="26" fill="#0b1d3a"/><circle cx="335" cy="185" r="12" fill="#b8f5c8"/><path d="M335 173v24M323 185h24" stroke="#0b1d3a" stroke-width="3"/></g></g></svg></div></div>
+<div class="grid3" id="hStats"></div>
+<h3>How it works</h3><div class="grid3"><div class="card"><h4>1️⃣ Pick where you are</h4><p>Choose your stop or tap a building on the campus map.</p></div><div class="card"><h4>2️⃣ See the bus</h4><p>Watch the live bus and its arrival time.</p></div><div class="card"><h4>3️⃣ Check seats</h4><p>Green = seats free, yellow = few left, red = full.</p></div></div></section>
+
+<section id="track" class="view"><h2>Track your bus</h2>
+<div class="card"><div class="row"><label>From <select id="from"></select></label><span>➜</span><label>To <select id="to"></select></label></div>
+<p class="hint">Tip: you can also tap two buildings on the map.</p><div id="plan"></div></div>
+<div class="card"><div class="legend"><span><i style="background:#14b8a6"></i>Academic Line</span><span><i style="background:#facc15"></i>Hostel Line</span><span>Ring: <b class="gc">●</b> seats <b class="yc">●</b> few <b class="rc">●</b> full</span></div>
+<div class="mapw"><svg id="map" viewBox="0 0 900 520"></svg></div><div id="busInfo"></div></div></section>
+
+<section id="ir" class="view"><h2>Seat Counter (IR sensors)</h2><p class="hint">Two sensors at the door. <b>A→B</b> = someone boarded. <b>B→A</b> = someone got off.</p>
+<div class="card"><label>Bus <select id="irBus"></select></label>
+<div class="stage"><div class="door">BUS DOOR</div><div class="sen" id="sA" style="left:35%">A</div><div class="sen" id="sB" style="left:65%">B</div><div class="per" id="per">🚶</div></div>
+<div class="row"><button class="btn" id="bIn">▶ ENTER (A → B)</button><button class="btn red" id="bOut">◀ EXIT (B → A)</button></div>
+<div id="irStat" class="status">Sensors idle. Press ENTER or EXIT.</div><div class="grid4" id="irNums"></div><h4>Sensor log</h4><ul id="irLog" class="feed"></ul></div></section>
+
+<section id="admin" class="view"><h2>Admin</h2><div class="grid4" id="aStats"></div>
+<div class="card"><h3>Fleet</h3><div class="scroll"><table id="aTbl"></table></div>
+<div class="row"><select id="nRoute"></select><input id="nCap" type="number" min="1" value="40"><button class="btn" id="addBus">+ Add bus</button><button class="btn ghost" onclick="localStorage.clear();location.reload()">Reset demo</button></div></div>
+<div class="card"><h3>Campus places</h3><div id="places" class="chips"></div></div></section>
+</main><script src="app.js"></script></body></html>
